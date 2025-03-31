@@ -6,7 +6,7 @@ export default function Navigation() {
         <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div className="container">
         <Link className="navbar-brand" to="#page-top">
-  <img src="/img/navbar-logo.svg" alt="..." />
+  <img src="/img/navbar-logo.svg" alt="Logo" />
        </Link>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
