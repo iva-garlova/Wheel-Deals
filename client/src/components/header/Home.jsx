@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 
-export default function Header() {
+export default function Home() {
     return (
         <header className="masthead">
         <div className="container">

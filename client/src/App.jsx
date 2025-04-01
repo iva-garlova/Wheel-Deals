@@ -1,10 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-import { Routes, Route} from 'react-router'
-import Header from './components/header/Header';
-import Navigation from './components/navigation/Navigation';
-import '/public/styles/styles.css';
+import { Routes, Route} from 'react-router';
+import './styles/styles.css'
+import Home from "./components/header/Home";
+import Navigation from "./components/navigation/Navigation";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
   <Navigation />
   <Routes>
     <Route>
-        <Route path='/' element={<Header />}/>
+        <Route path='/' element={<Home />}/>
     </Route>
   </Routes>
      </>
