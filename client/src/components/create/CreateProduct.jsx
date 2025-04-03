@@ -1,7 +1,16 @@
+import { useNavigate } from 'react-router';
+
+import productServise from "../../services/productServise";
+
 export default function CreateProduct() {
-   const submitAction = (FormData) => {
-    const data = Object.fromEntries(FormData);
-    console.log(data);
+    const navigate = useNavigate();
+
+   const submitAction = async(FormData) => {
+    const productData = Object.fromEntries(FormData);
+
+ await productServise.create(productData);
+    
+ navigate('/products');
     
    }
 
