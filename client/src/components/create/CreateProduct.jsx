@@ -1,5 +1,11 @@
 export default function CreateProduct() {
-    return (
+   const submitAction = (FormData) => {
+    const data = Object.fromEntries(FormData);
+    console.log(data);
+    
+   }
+
+    return(
         <section className="page-section" id="contact">
         <div className="container">
             <div className="text-center">
@@ -7,29 +13,29 @@ export default function CreateProduct() {
                 <h3 className="section-subheading text-muted">Give your details below.</h3>
             </div>
 
-            <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+            <form id="contactForm" action={submitAction} data-sb-form-api-token="API_TOKEN">
                 <div className="row align-items-stretch mb-5">
                     <div className="col-md-6">
                         <div className="form-group">
                             {/* <!-- Product Name input--> */}
-                            <input className="form-control" id="name" type="text" placeholder="Product Name *" data-sb-validations="required" />
+                            <input className="form-control" id="name" name="title" type="text" placeholder="Product Name *" data-sb-validations="required" />
                             <div className="invalid-feedback" data-sb-feedback="name:required">A product name is required.</div>
                         </div>
                         <div className="form-group">
                             {/* <!-- Email address input--> */}
-                            <input className="form-control" id="imageUrl" type="text" placeholder="Image *" data-sb-validations="required,email" />
+                            <input className="form-control" id="imageUrl" name="imageUrl" type="text" placeholder="Image *" data-sb-validations="required,email" />
                             <div className="invalid-feedback" data-sb-feedback="email:required">Image is required.</div>
                             <div className="invalid-feedback" data-sb-feedback="email:email">Image is not valid.</div>
                         </div>
                         <div className="form-group">
                             {/* <!-- Email address input--> */}
-                            <input className="form-control" id="type" type="text" placeholder="Type *" data-sb-validations="required,email" />
+                            <input className="form-control" id="type" name="type" type="text" placeholder="Type *" data-sb-validations="required,email" />
                             <div className="invalid-feedback" data-sb-feedback="email:required">Type is required.</div>
                             <div className="invalid-feedback" data-sb-feedback="email:email">Type is not valid.</div>
                         </div>
                         <div className="form-group mb-md-0">
                             {/* <!-- Phone number input--> */}
-                            <input className="form-control" id="price" type="number" placeholder="Price *" data-sb-validations="required" />
+                            <input className="form-control" id="price" name="price" type="text" placeholder="Price *" data-sb-validations="required" />
                             <div className="invalid-feedback" data-sb-feedback="phone:required">Price.</div>
                         </div>
 
@@ -37,7 +43,7 @@ export default function CreateProduct() {
                     <div className="col-md-6">
                         <div className="form-group form-group-textarea mb-md-0">
                             {/* <!-- Message input--> */}
-                            <textarea className="form-control" id="description" placeholder="Description *" data-sb-validations="required"></textarea>
+                            <textarea className="form-control" id="description" name="description" placeholder="Description *" data-sb-validations="required"></textarea>
                             <div className="invalid-feedback" data-sb-feedback="message:required">A description is required.</div>
                         </div>
                     </div>
@@ -60,7 +66,7 @@ export default function CreateProduct() {
                 {/* <!-- an error submitting the form--> */}
                 <div className="d-none" id="submitErrorMessage"><div className="text-center text-danger mb-3">Error creating post!</div></div>
                 {/* <!-- Submit Button--> */}
-                <div className="text-center"><button className="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit"> Save & Create</button></div>
+                <div className="text-center"><button className="btn btn-primary btn-xl text-uppercase " id="submitButton" type="submit"> Save & Create</button></div>
             </form>
         </div>
     </section>
