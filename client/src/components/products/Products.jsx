@@ -8,10 +8,7 @@ export default function Products() {
     useEffect(() => {
         productServise.getAll()
         .then(setProduct);
-    }, [])
-
-    console.log(products);
-    
+    }, [])   
     return (
         <section className="page-section bg-light" id="portfolio">
         <div className="container">

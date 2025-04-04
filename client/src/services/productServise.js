@@ -9,6 +9,10 @@ export default {
 
         return products;
     },
+
+    getOne(productId){
+        return request.get(`${baseUrl}/${productId}`)
+    },
     create(productData){
         return request.post(baseUrl, productData);
 

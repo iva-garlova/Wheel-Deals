@@ -3747,7 +3747,7 @@ appearance: none;
   --bs-navbar-toggler-focus-width: 0.25rem;
   --bs-navbar-toggler-transition: box-shadow 0.15s ease-in-out;
   position: relative;
-  display: flex;
+  /* display: flex; */
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
@@ -3760,7 +3760,7 @@ appearance: none;
 .navbar > .container-lg,
 .navbar > .container-xl,
 .navbar > .container-xxl {
-  display: flex;
+  /* display: flex; */
   flex-wrap: inherit;
   align-items: center;
   justify-content: space-between;
@@ -7377,7 +7377,9 @@ appearance: none;
 }
 
 .justify-content-center {
+
   justify-content: center !important;
+
 }
 
 .justify-content-between {

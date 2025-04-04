@@ -10,8 +10,12 @@ import Register from "./components/register/Register";
 import CreateProduct from "./components/create/CreateProduct";
 import EditProduct from "./components/edit/EditProduct";
 import Products from "./components/products/Products";
+import Details from "./components/details/Details";
+
+
 
 function App() {
+  
   return (
     <>
   <Navigation />
@@ -21,6 +25,7 @@ function App() {
         <Route path='/login' element={<Login />}/>
         <Route path='/register' element={<Register />}/>
         <Route path='/products/create' element={<CreateProduct />}/>
+        <Route path='/products/:productId/details' element={<Details />}/>
         <Route path='/products/edit' element={<EditProduct />}/>
         <Route path='/products' element={<Products />}/>
     </Route>
