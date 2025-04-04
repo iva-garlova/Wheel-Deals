@@ -1,15 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import productServise from "../../services/productServise";
 
 export default function Products() {
+    const [products, setProduct] = useState([]);
 
     useEffect(() => {
         productServise.getAll()
-        .then(result => {
-            console.log(result);
-            
-        })
+        .then(setProduct);
     }, [])
+
+    console.log(products);
+    
     return (
         <section className="page-section bg-light" id="portfolio">
         <div className="container">
