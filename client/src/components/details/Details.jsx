@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import productServise from "../../services/productServise";
 
 export default function Details() {
+    const navigate = useNavigate();
     const [product, setProduct] = useState({})
     const {productId} = useParams();
 
@@ -12,6 +13,16 @@ export default function Details() {
             setProduct(result);
         })()
     }, [productId]);
+
+    const productDeleteClickHandler = async() => {
+        const hasConfirm = confirm(`Are you sure you want to delete ${product.title}?`);
+
+        if(!hasConfirm){
+            return
+        }
+        await productServise.delete(productId);
+        navigate('/products')
+    };
    
     return (
        
@@ -35,13 +46,20 @@ export default function Details() {
                                         {product.price}
                                     </li>
                                 </ul>
-                                <button className="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                               
+                                <Link to="products/edit" className="btn btn-primary btn-xl text-uppercase">
+                                  <i className="fas fa-xmark me-1"></i>
+                                        Edit
+                               </Link>
+                        
+                                <button onClick={productDeleteClickHandler}
+                                className="btn  btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                   
                                     <i className="fas fa-xmark me-1"></i>
-                                    Edit
-                                </button>
-                                <button className="btn  btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                    <i className="fas fa-xmark me-1"></i>
+                            
                                     Delete
+                                
+
                                 </button>
                             </div>
                         </div>

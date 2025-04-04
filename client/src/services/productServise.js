@@ -17,4 +17,7 @@ export default {
         return request.post(baseUrl, productData);
 
     },
+    delete(productId){
+        return request.delete(`${baseUrl}/${productId}`)
+    },
 };
