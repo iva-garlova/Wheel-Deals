@@ -17,6 +17,9 @@ export default {
         return request.post(baseUrl, productData);
 
     },
+    edit(productId, productData){
+        return request.put(`${baseUrl}/${productId}`, {...productData, _id:productId})
+    },
     delete(productId){
         return request.delete(`${baseUrl}/${productId}`)
     },
