@@ -47,7 +47,7 @@ export default function Details() {
                                     </li>
                                 </ul>
                                
-                                <Link to="products/edit" className="btn btn-primary btn-xl text-uppercase">
+                                <Link to={`/products/${productId}/edit`} className="btn btn-primary btn-xl text-uppercase">
                                   <i className="fas fa-xmark me-1"></i>
                                         Edit
                                </Link>

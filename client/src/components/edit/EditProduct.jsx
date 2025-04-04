@@ -1,4 +1,20 @@
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router";
+import productServise from "../../services/productServise";
+import { useState } from "react";
+
 export default function EditProduct() {
+
+    const navigate = useNavigate();
+    const {productId} = useParams();
+    const [product, setProduct] = useState({});
+
+    useEffect(() => {
+       productServise.getOne(productId)
+       .then(setProduct);
+    }, [productId]);
+
+
     return (
         <section className="page-section" id="contact">
         <div className="container">
@@ -12,31 +28,31 @@ export default function EditProduct() {
                     <div className="col-md-6">
                         <div className="form-group">
                             {/* <!-- Product Name input--> */}
-                            <input className="form-control" id="name" type="text" placeholder="Product Name *" data-sb-validations="required" />
+                            <input className="form-control" id="name" type="text" defaultValue={product.title} placeholder="Product Name *" data-sb-validations="required" />
                             <div className="invalid-feedback" data-sb-feedback="name:required">A product name is required.</div>
                         </div>
                         <div className="form-group">
                            
-                            <input className="form-control" id="type" type="text" placeholder="Type *" data-sb-validations="required,email" />
+                            <input className="form-control" id="type" type="text" defaultValue={product.type} placeholder="Type *" data-sb-validations="required,email" />
                             <div className="invalid-feedback" data-sb-feedback="email:required">Type is required.</div>
                             <div className="invalid-feedback" data-sb-feedback="email:email">Type is not valid.</div>
                         </div>
                         <div className="form-group">
                          
-                            <input className="form-control" id="imageUrl" type="text" placeholder="Image *" data-sb-validations="required,email" />
+                            <input className="form-control" id="imageUrl" type="text" defaultValue={product.imageUrl} placeholder="Image *" data-sb-validations="required,email" />
                             <div className="invalid-feedback" data-sb-feedback="email:required">Image is required.</div>
                             <div className="invalid-feedback" data-sb-feedback="email:email">Image is not valid.</div>
                         </div>
                         <div className="form-group mb-md-0">
                          
-                            <input className="form-control" id="price" type="number" placeholder="Price *" data-sb-validations="required" />
+                            <input className="form-control" id="price" type="text" defaultValue={product.price} placeholder="Price *" data-sb-validations="required" />
                             <div className="invalid-feedback" data-sb-feedback="phone:required">Price.</div>
                         </div>
                     </div>
                     <div className="col-md-6">
                         <div className="form-group form-group-textarea mb-md-0">
                             {/* <!-- Message input--> */}
-                            <textarea className="form-control" id="description" placeholder="Description *" data-sb-validations="required"></textarea>
+                            <textarea className="form-control" id="description" defaultValue={product.description} placeholder="Description *" data-sb-validations="required"></textarea>
                             <div className="invalid-feedback" data-sb-feedback="message:required">A description is required.</div>
                         </div>
                     </div>
