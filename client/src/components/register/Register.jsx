@@ -20,12 +20,19 @@ export default function Register() {
                             <div className="invalid-feedback" data-sb-feedback="email:required">A password is required.</div>
                             <div className="invalid-feedback" data-sb-feedback="email:email">Password is not valid.</div>
                         </div>
+                        <div className="form-group mb-md-0">
+                            {/* <!-- Phone number input--> */}
+                            <input className="form-control" id="rePassword" type="text" placeholder="Repeat Password *" data-sb-validations="required" />
+                            <div className="invalid-feedback" data-sb-feedback="phone:required">A re-password number is required.</div>
+                        </div>
                        
                     </div>
                     <div className="col-md-6">
                         {/* TO DO LOGO */}
                     </div>
+                    
                 </div>
+                <div className="text-center"><button className="btn btn-primary btn-xl text-uppercase " id="submitButton" type="submit"> Register</button></div>
                 </form>
                 </div>
                 </section>
