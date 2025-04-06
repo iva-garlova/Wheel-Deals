@@ -1,29 +1,24 @@
- const request = async(method, url, data) => {
-    let options = {};
-  
-  if(method !== 'GET')  {
-    options = {
-    method,
-   
-  };
-};
+const request = async(method, url, data, options = {}) => {
+  options.method = method;
 
-if (data) {
-    options = {
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    }
-}
+  if (data) {
+    options.headers = {
+      ...options.headers,
+      'Content-Type': 'application/json',
+    };
+    options.body = JSON.stringify(data);
+  }
 
   const response = await fetch(url, options);
-  const result = await response.json();
+  if (!response.ok) {
+    const error = await response.json();
+    throw error;
+  }
 
+  const result = response.status === 204 ? {} : await response.json();
+  
   return result;
- };
-
+};
  export default {
     get: request.bind(null, 'GET'),
     post: request.bind(null, 'POST'),

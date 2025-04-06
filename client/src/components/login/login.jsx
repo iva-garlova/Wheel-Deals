@@ -1,25 +1,28 @@
 
 import { useActionState } from "react";
 import { useNavigate } from "react-router";
+import { useLogin } from "../../api/authenticationApi";
 
 export default function Login({
     onLogin,
 }) {
 
     const navigate = useNavigate();
+    const {login} = useLogin();
 
-    const loginHandler = (previousState, formData) => {
-        const values = Object.fromEntries(formData)
+    const loginHandler = async (_, formData) => {
+        const values = Object.fromEntries(formData);
 
-        onLogin(values.email);
+        const authData = await login(values.email, values.password);
+        
+        onLogin(authData);
 
         navigate('/products');
 
-        return values;
-    }
+            }
 
-    const [values, loginAction, isPending] = useActionState(loginHandler, {email:'', password:''});
-    console.log(values);
+    const [_, loginAction, isPending] = useActionState(loginHandler, {email:'', password:''});
+    
     
   
     
@@ -35,7 +38,7 @@ export default function Login({
                     <div className="col-md-6">
                         <div className="form-group">
                             {/* <!-- Email input--> */}
-                            <input className="form-control" id="name" name="email "type="text" placeholder="Email *" data-sb-validations="required" />
+                            <input className="form-control" id="name" name="email" type="text" placeholder="Email *" data-sb-validations="required" />
                             <div className="invalid-feedback" data-sb-feedback="email:required">An Email is required.</div>
                         </div>
                         <div className="form-group">
