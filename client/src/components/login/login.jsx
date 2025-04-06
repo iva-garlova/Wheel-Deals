@@ -21,7 +21,7 @@ export default function Login() {
 
             }
 
-    const [_, loginAction, isPending] = useActionState(loginHandler, {email:'', password:''});
+    const [, loginAction, isPending] = useActionState(loginHandler, {email:'', password:''});
     
     
   
@@ -43,7 +43,7 @@ export default function Login() {
                         </div>
                         <div className="form-group">
                             {/* <!-- Password input--> */}
-                            <input className="form-control" id="password" name="password" type="passoword" placeholder="Your Password *"  />
+                            <input className="form-control" id="password" name="password" type="password" placeholder="Your Password *"  />
                             {/* <div className="invalid-feedback" data-sb-feedback="password:required">Password is required.</div>
                             <div className="invalid-feedback" data-sb-feedback="password:email">Password is not valid.</div> */}
                         </div>

@@ -1,4 +1,26 @@
+import { useContext } from "react";
+import { useRegister } from "../../api/authenticationApi";
+import { userContext } from "../../contexts/userContext";
+import { useNavigate } from "react-router";
+
 export default function Register() {
+    const navigate = useNavigate();
+    const { register } = useRegister();
+    const { userLoginHandler } = useContext(userContext);
+
+    const registerHandler = async (formData) => {
+        const {email, password} = Object.fromEntries(formData);
+        const repeatPassword = formData.get('repeat-password');
+
+        if(password !== repeatPassword){
+            return;
+        }
+
+        const authData = await register(email, password);
+        userLoginHandler(authData);
+        navigate('/')
+
+    }
     return (
         <section className="page-section" id="contact">
         <div className="container">
@@ -6,24 +28,24 @@ export default function Register() {
                 <h2 className="section-heading text-uppercase">Register</h2>
                 <h3 className="section-subheading text-muted">Have no account?</h3>
             </div>
-            <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+            <form id="contactForm" action={registerHandler}>
                 <div className="row align-items-stretch mb-5">
                     <div className="col-md-6">
                         <div className="form-group">
                             {/* <!-- Name input--> */}
-                            <input className="form-control" id="email" type="text" placeholder="Email *" data-sb-validations="required" />
+                            <input className="form-control" id="email" type="text" name="email" placeholder="Email *" data-sb-validations="required" />
                             <div className="invalid-feedback" data-sb-feedback="name:required">An email is required.</div>
                         </div>
                         <div className="form-group">
                             {/* <!-- Email address input--> */}
-                            <input className="form-control" id="password" type="text" placeholder="Your Password *" data-sb-validations="required,email" />
-                            <div className="invalid-feedback" data-sb-feedback="email:required">A password is required.</div>
-                            <div className="invalid-feedback" data-sb-feedback="email:email">Password is not valid.</div>
+                            <input className="form-control" id="password" type="text" name="password" placeholder="Your Password *" data-sb-validations="required,email" />
+                            <div className="invalid-feedback" data-sb-feedback="password:required">A password is required.</div>
+                            <div className="invalid-feedback" data-sb-feedback="password:email">Password is not valid.</div>
                         </div>
                         <div className="form-group mb-md-0">
-                            {/* <!-- Phone number input--> */}
-                            <input className="form-control" id="rePassword" type="text" placeholder="Repeat Password *" data-sb-validations="required" />
-                            <div className="invalid-feedback" data-sb-feedback="phone:required">A re-password number is required.</div>
+                            {/* <!-- Re-password input--> */}
+                            <input className="form-control" id="rePassword" type="text" name="repeat-password" placeholder="Repeat Password *" data-sb-validations="required" />
+                            <div className="invalid-feedback" data-sb-feedback="re-password:required">A re-password number is required.</div>
                         </div>
                        
                     </div>
