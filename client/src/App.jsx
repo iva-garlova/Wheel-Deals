@@ -1,6 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
+import { userContext } from "./contexts/userContext";
+
 import { Routes, Route} from 'react-router';
 import './styles/styles.css'
 import Home from "./components/header/Home";
@@ -23,20 +25,22 @@ function App() {
     };
   
   return (
+    <userContext.Provider value={{...authData, userLoginHandler}}>
     <>
   <Navigation />
   <Routes>
     <Route>
         <Route path='/' element={<Home />}/>
-        <Route path='/login' element={<Login onLogin={userLoginHandler}/>}/>
+        <Route path='/login' element={<Login />}/>
         <Route path='/register' element={<Register />}/>
         <Route path='/products/create' element={<CreateProduct />}/>
-        <Route path='/products/:productId/details' element={<Details email={authData.email} />}/>
+        <Route path='/products/:productId/details' element={<Details />}/>
         <Route path='/products/:productId/edit' element={<EditProduct />}/>
         <Route path='/products' element={<Products />}/>
     </Route>
   </Routes>
      </>
+     </userContext.Provider>
   )
 }
 
