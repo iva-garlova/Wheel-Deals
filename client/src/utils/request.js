@@ -10,10 +10,16 @@ const request = async(method, url, data, options = {}) => {
   }
 
   const response = await fetch(url, options);
+  const responseContentType = response.headers.get('Content-Type');
+  if(!responseContentType){
+    return
+  }
+  
   if (!response.ok) {
     const error = await response.json();
     throw error;
   }
+  
 
   const result = response.status === 204 ? {} : await response.json();
   
