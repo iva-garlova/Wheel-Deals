@@ -1,5 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import request from "../utils/request";
+import { userContext } from "../contexts/userContext";
 
 const baseUrl = 'http://localhost:3030/users';
 export const useLogin = () => {
@@ -23,7 +24,7 @@ export const useLogin = () => {
     return{
         login,
     }
-}
+};
 
 export const useRegister = () => {
     const  register = (email, password) => {
@@ -32,4 +33,18 @@ export const useRegister = () => {
     return {
         register,
     }
-}
+};
+
+export const useLogout = () => {
+    const { accessToken } = useContext(userContext);
+    const options = {
+        headers: {
+            'X-Authorization': accessToken
+        }
+    }
+     const logout = () => request.get(`${baseUrl}/logout`, null, options);
+
+     return {
+        logout,
+     }
+};

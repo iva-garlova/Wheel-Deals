@@ -14,6 +14,7 @@ import EditProduct from "./components/edit/EditProduct";
 import Products from "./components/products/Products";
 import Details from "./components/details/Details";
 import { useState } from "react";
+import Logout from "./components/logout/Logout";
 
 
 
@@ -33,6 +34,7 @@ function App() {
         <Route path='/' element={<Home />}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/register' element={<Register />}/>
+        <Route path='/logout' element={<Logout />}/>
         <Route path='/products/create' element={<CreateProduct />}/>
         <Route path='/products/:productId/details' element={<Details />}/>
         <Route path='/products/:productId/edit' element={<EditProduct />}/>
