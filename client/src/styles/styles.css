@@ -3760,7 +3760,7 @@ appearance: none;
 .navbar > .container-lg,
 .navbar > .container-xl,
 .navbar > .container-xxl {
-  /* display: flex; */
+  display: flex;
   flex-wrap: inherit;
   align-items: center;
   justify-content: space-between;
@@ -3786,6 +3786,8 @@ appearance: none;
   --bs-nav-link-hover-color: var(--bs-navbar-hover-color);
   --bs-nav-link-disabled-color: var(--bs-navbar-disabled-color);
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex-direction: column;
   padding-left: 0;
   margin-bottom: 0;

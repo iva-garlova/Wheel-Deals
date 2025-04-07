@@ -15,6 +15,7 @@ import Products from "./components/products/Products";
 import Details from "./components/details/Details";
 import { useState } from "react";
 import Logout from "./components/logout/Logout";
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 
