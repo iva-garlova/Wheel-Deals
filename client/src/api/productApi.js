@@ -1,22 +1,16 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import request from "../utils/request";
-import { userContext } from "../contexts/userContext";
+import  useAuth  from "../hooks/useAuth";
 
 const baseUrl = 'http://localhost:3030/data/products';
 
 export default {
-
-    getOne(productId){
-        return request.get(`${baseUrl}/${productId}`)
-    },
-   
-    edit(productId, productData){
-        return request.put(`${baseUrl}/${productId}`, {...productData, _id:productId})
-    },
+      
     delete(productId){
         return request.delete(`${baseUrl}/${productId}`)
     },
 };
+
 
 export const useGetAllProducts = () => {
     const [products, setProducts] = useState([]);
@@ -31,13 +25,8 @@ export const useGetAllProducts = () => {
 }
 
 export const useCreateProduct = () => {
-    const { accessToken } = useContext(userContext);
-
-    const options = {
-        headers: {
-            'X-Authorization': accessToken,
-        }
-    }
+    const { options } = useAuth();
+   
     const create = (productData) => 
          request.post(baseUrl, productData, options)
     
@@ -58,3 +47,15 @@ export const useGetOneProduct = (productId) => {
         product,
     }
 }
+
+export const useEditProduct = () => {
+    const { options } = useAuth();
+
+    const edit = async (productId, productData) => {
+         const response = await request.put(`${baseUrl}/${productId}`, {...productData, _id:productId}, options);
+         return response;
+        };
+        return {
+            edit,
+        }
+    }

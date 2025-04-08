@@ -1,23 +1,21 @@
-import { useEffect } from "react";
+
 import { useNavigate, useParams } from "react-router";
-import productServise from "../../services/productServise";
-import { useState } from "react";
+
+import { useEditProduct, useGetOneProduct } from "../../api/productApi";
 
 export default function EditProduct() {
 
     const navigate = useNavigate();
-    const {productId} = useParams();
-    const [product, setProduct] = useState({});
+    const { productId } = useParams();
+    const { edit } = useEditProduct(); // Use the hook to get the edit function
+    const {product} = useGetOneProduct(productId);
 
-    useEffect(() => {
-       productServise.getOne(productId)
-       .then(setProduct);
-    }, [productId]);
+   
 
     const formAction = async(formData) => {
        const productData = Object.fromEntries(formData);
 
-       await productServise.edit(productId, productData);
+       await edit(productId, productData);
 
        navigate(`/products/${productId}/details`)
     }

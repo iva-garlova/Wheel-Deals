@@ -5,8 +5,10 @@ const request = async(method, url, data, options = {}) => {
     options.headers = {
       ...options.headers,
       'Content-Type': 'application/json',
+      ...options.headers,
     };
     options.body = JSON.stringify(data);
+    
   }
 
   const response = await fetch(url, options);

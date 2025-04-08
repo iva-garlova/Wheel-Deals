@@ -20,7 +20,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 function App() {
-    const [authData, setAuthData] = useState({});
+    const [authData, setAuthData] = useState({
+        _id: '',
+    email: '',
+    username: '',
+    accessToken: ''
+    });
 
     const userLoginHandler = (resultData) => {
         setAuthData(resultData);
