@@ -1,14 +1,15 @@
 import { useNavigate } from 'react-router';
-
-import productServise from "../../services/productServise";
+import { useCreateProduct } from '../../api/productApi';
 
 export default function CreateProduct() {
     const navigate = useNavigate();
+    const { create } = useCreateProduct();
 
    const submitAction = async(FormData) => {
     const productData = Object.fromEntries(FormData);
 
- await productServise.create(productData);
+
+await create(productData);
     
  navigate('/products');
     

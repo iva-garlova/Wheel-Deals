@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import productServise from "../../services/productServise";
-import { userContext } from "../../contexts/userContext";
+
 
 export default function Details() {
 
     const navigate = useNavigate();
-    const { email } = useContext(userContext);
+    // const { email } = useContext(userContext);
     const [product, setProduct] = useState({})
     const {productId} = useParams();
 
@@ -36,7 +36,6 @@ export default function Details() {
                             <div className="modal-body">
                                 {/* <!-- Project details--> */}
                                 <h2 className="text-uppercase">{product.title}</h2>
-                                <p>Logged user: {email}</p>
                                 <p className="item-intro text-muted">{product.type}</p>
                                 <img className="img-fluid" src={product.imageUrl} alt="Product image" />
                                 <p>{product.description}</p>
