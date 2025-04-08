@@ -1,21 +1,14 @@
-import {  useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import productServise from "../../services/productServise";
+import { useGetOneProduct } from "../../api/productApi";
 
 
 export default function Details() {
 
     const navigate = useNavigate();
-    // const { email } = useContext(userContext);
-    const [product, setProduct] = useState({})
     const {productId} = useParams();
+    const {product} = useGetOneProduct(productId);
 
-    useEffect(() => {
-        (async() => {
-            const result = await productServise.getOne(productId);
-            setProduct(result);
-        })()
-    }, [productId]);
 
     const productDeleteClickHandler = async() => {
         const hasConfirm = confirm(`Are you sure you want to delete ${product.title}?`);

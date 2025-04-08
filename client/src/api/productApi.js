@@ -45,3 +45,16 @@ export const useCreateProduct = () => {
         create,
     }
 }
+
+export const useGetOneProduct = (productId) => {
+    const [product, setProduct] = useState({});
+
+    useEffect(() => {
+       request.get(`${baseUrl}/${productId}`)
+       .then(setProduct)
+    }, [productId])
+
+    return {
+        product,
+    }
+}
