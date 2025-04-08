@@ -1,14 +1,10 @@
-import { useEffect, useState } from "react";
-import productServise from "../../services/productServise";
+
 import ProductItem from "./procut-catalog-item/ProductItem";
+import { useGetAllProducts } from "../../api/productApi";
 
 export default function Products() {
-    const [products, setProduct] = useState([]);
-
-    useEffect(() => {
-        productServise.getAll()
-        .then(setProduct);
-    }, [])   
+  const { products } = useGetAllProducts();  
+  
     return (
         <section className="page-section bg-light" id="portfolio">
         <div className="container">
