@@ -9,7 +9,7 @@ export default function Navigation() {
         <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div className="container">
         <Link className="navbar-brand" to="#page-top">
-  {/* <img src="/img/horizontal.svg" alt="Logo" /> */}
+  <img src="/img/autoparts.webp" alt="Logo" />
        </Link>
             {/* <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
@@ -18,6 +18,7 @@ export default function Navigation() {
             <div className="collapse navbar-collapse" id="navbarResponsive">
                 <ul className="navbar-nav text-uppercase ms-auto d-flex">
                     <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
+                    <li className="nav-item"><Link className="nav-link" to="/about">About us</Link></li>
                     <li className="nav-item"><Link className="nav-link" to="/products">Products</Link></li>
                     <li className="nav-item"><Link className="nav-link" to="/search">Search</Link></li>
                     {email 
