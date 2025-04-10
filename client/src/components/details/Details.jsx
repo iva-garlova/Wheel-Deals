@@ -1,13 +1,13 @@
 import { Link, useNavigate, useParams } from "react-router";
-import productServise from "../../services/productServise";
-import { useGetOneProduct } from "../../api/productApi";
+import { useDeleteProduct, useGetOneProduct } from "../../api/productApi";
 
 
 export default function Details() {
 
     const navigate = useNavigate();
-    const {productId} = useParams();
-    const {product} = useGetOneProduct(productId);
+    const { productId } = useParams();
+    const { product } = useGetOneProduct(productId);
+    const { deleteProduct } = useDeleteProduct();
 
 
     const productDeleteClickHandler = async() => {
@@ -16,7 +16,9 @@ export default function Details() {
         if(!hasConfirm){
             return
         }
-        await productServise.delete(productId);
+       
+        await deleteProduct(productId)
+        
         navigate('/products')
     };
    

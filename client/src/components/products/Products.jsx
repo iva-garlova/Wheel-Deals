@@ -1,9 +1,9 @@
-
-import ProductItem from "./procut-catalog-item/ProductItem";
+ import ProductItem from "./procut-catalog-item/ProductItem";
 import { useGetAllProducts } from "../../api/productApi";
 
 export default function Products() {
   const { products } = useGetAllProducts();  
+  
   
     return (
         <section className="page-section bg-light" id="portfolio">
@@ -19,3 +19,4 @@ export default function Products() {
     </section>
     );
 }
+

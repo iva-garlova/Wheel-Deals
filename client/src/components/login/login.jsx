@@ -19,7 +19,7 @@ export default function Login() {
         
         userLoginHandler(authData);
 
-        navigate('/products');
+        navigate('/');
 
             }
 

@@ -16,22 +16,19 @@ import Details from "./components/details/Details";
 import { useState } from "react";
 import Logout from "./components/logout/Logout";
 import 'bootstrap/dist/css/bootstrap.min.css'
+import About from "./components/header/About";
 
 
 
 function App() {
-    const [authData, setAuthData] = useState({
-        _id: '',
-    email: '',
-    username: '',
-    accessToken: ''
-    });
+    const [authData, setAuthData] = useState({});
 
     const userLoginHandler = (resultData) => {
         setAuthData(resultData);
     };
 
     const userLogoutHandler = () => {
+        
         setAuthData({});
     }
   
@@ -42,6 +39,7 @@ function App() {
   <Routes>
     <Route>
         <Route path='/' element={<Home />}/>
+        <Route path='/about' element={<About />}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/register' element={<Register />}/>
         <Route path='/logout' element={<Logout />}/>

@@ -1,19 +1,21 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect} from "react";
 import request from "../utils/request";
 import { userContext } from "../contexts/userContext";
 
-const baseUrl = 'http://localhost:3030/jsonstore/users';
+const baseUrl = 'http://localhost:3030/users';
 export const useLogin = () => {
 
     const login = async(email, password) => {
      const result = await request.post(
         `${baseUrl}/login`, 
-        {email, password}, 
+        {email, password},    
 
     );
+    console.log(result);
 
      return result;
     }
+
 
     return{
         login,
@@ -31,25 +33,30 @@ export const useRegister = () => {
 
 export const useLogout = () => {
     const { accessToken, userLogoutHandler } = useContext(userContext);
+    console.log(accessToken);
+    
 
     useEffect(() => {
+
         if(!accessToken){
             return;
         }
-        
+       
         const options = {
             headers: {
                 'X-Authorization': accessToken
             }
         };
-      request.get(`${baseUrl}/logout`, null, options)
-        .then(() => {
-           userLogoutHandler()
-        });
+     request.get(`${baseUrl}/logout`, null, options)
+     .then(userLogoutHandler);
     
+     
     }, [accessToken, userLogoutHandler]);
-
+  
+    
+    
     return {
         isLoggedOut: !!accessToken,
     }
+     
 };
