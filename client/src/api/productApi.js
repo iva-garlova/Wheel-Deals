@@ -26,12 +26,12 @@ export const useGetAllProducts = () => {
     return { products };
 };
 
-// Hook to create a product
+
 export const useCreateProduct = () => {
-    const { request } = useAuth();  // You may use the `request` from useAuth if needed
+    const { request } = useAuth();  
 
     const create = (productData) => {
-        // Ensure this is the correct URL and method, and handle response and errors
+        
         return request.post(baseUrl, productData)
             .then(response => {
                 console.log("Product created successfully:", response);
@@ -44,12 +44,12 @@ export const useCreateProduct = () => {
     return { create };
 };
 
-// Hook to fetch a single product by ID
+
 export const useGetOneProduct = (productId) => {
     const [product, setProduct] = useState({});
 
     useEffect(() => {
-        // Using request directly here as well
+       
         request.get(`${baseUrl}/${productId}`)
             .then(response => {
                 if (response) {
@@ -66,7 +66,7 @@ export const useGetOneProduct = (productId) => {
     return { product };
 };
 
-// Hook to edit a product
+
 export const useEditProduct = () => {
     const { request } = useAuth();
 
@@ -83,7 +83,7 @@ export const useEditProduct = () => {
     return { edit };
 };
 
-// Hook to delete a product
+
 export const useDeleteProduct = () => {
     const { request } = useAuth();
 
@@ -99,3 +99,28 @@ export const useDeleteProduct = () => {
 
     return { deleteProduct };
 };
+
+// export const useProductPagination = () => {
+//     const [pages, setPages] = useState([]);
+
+//     useEffect(() => {
+//         const params = new URLSearchParams({
+//             sortBy: '_createdOn desc',
+//             pageSize: 3,
+//         });
+
+//         request.get(`${baseUrl}?${params.toString()}`)
+//         .then(setPages)
+//     }, []);
+//     return { pages };
+// }
+export const getPaginated = (offset, pageSize) => {
+    return request.baseRequest('GET', `/data/products?offset=${offset}&pageSize=${pageSize}`)
+      .then(result => {
+        return {
+          products: result.products, // Assuming the response includes the products list
+          totalPages: result.totalPages, // Assuming the response includes the total pages
+          totalCount: result.totalCount, // Assuming the response includes the total count of products
+        };
+      });
+  };
